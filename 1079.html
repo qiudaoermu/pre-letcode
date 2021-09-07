@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+let res = [];
+var numTilePossibilities = function(tiles) {
+  const dfs = (current, nums) => {
+    if (nums.length === 0) {
+      current.length && res.push(current.join(""));
+      return;
+    };
+    const currentNext = current.concat(nums[0]);
+    dfs(currentNext, nums.slice(1));
+    dfs(current, nums.slice(1));
+  };
+  dfs([], tiles.split(""));
+};
+numTilePossibilities("ABC");
+numTilePossibilities("ACB");
+numTilePossibilities("CBA");
+numTilePossibilities("CAB");
+// eslint-disable-next-line quotes
+numTilePossibilities("BCA");
+numTilePossibilities("BAC");
+console.log([...new Set(res)]);
+</script>
+</html>
